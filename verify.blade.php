@@ -1,183 +1,92 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
-        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml"
-      style="font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; box-sizing: border-box; font-size: 14px; margin: 0;">
+<!DOCTYPE html>
+<html lang="zh-CN">
 <head>
-    <meta name="viewport" content="width=device-width"/>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-    <title>Billing e.g. invoices and receipts</title>
-
-
-    <style type="text/css">
-        img {
-            max-width: 100%;
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Email Verification</title>
+    <style>
+        body, table, td, a { -webkit-text-size-adjust: 100%; -ms-text-size-adjust: 100%; }
+        table, td { mso-table-lspace: 0pt; mso-table-rspace: 0pt; }
+        img { -ms-interpolation-mode: bicubic; border: 0; height: auto; line-height: 100%; outline: none; text-decoration: none; }
+        table { border-collapse: collapse !important; }
+        body { height: 100% !important; margin: 0 !important; padding: 0 !important; width: 100% !important; font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; background-color: #f4f7f9; color: #333333; }
+        
+        .email-container { max-width: 600px; margin: 0 auto; background-color: #ffffff; border-radius: 8px; overflow: hidden; box-shadow: 0 4px 10px rgba(0,0,0,0.05); margin-top: 40px; margin-bottom: 40px; }
+        .header { background-color: #ffffff; padding: 30px 20px 10px 20px; text-align: center; }
+        .content { padding: 20px 40px 40px 40px; text-align: left; }
+        .footer { background-color: #f4f7f9; padding: 20px; text-align: center; font-size: 12px; color: #999999; }
+        
+        .code-box {
+            background-color: #f0f8ff; 
+            border: 1px dashed #3498db; 
+            border-radius: 6px; 
+            padding: 20px; 
+            text-align: center; 
+            margin: 25px 0;
         }
-
-        body {
-            -webkit-font-smoothing: antialiased;
-            -webkit-text-size-adjust: none;
-            width: 100% !important;
-            height: 100%;
-            line-height: 1.6em;
+        .verification-code {
+            font-size: 32px; 
+            font-weight: 700; 
+            color: #3498db; 
+            letter-spacing: 4px;
+            font-family: 'Courier New', Courier, monospace;
         }
+        
+        h1 { font-size: 24px; font-weight: bold; margin: 0 0 10px 0; color: #333333; }
+        p { font-size: 16px; line-height: 1.6; margin: 0 0 15px 0; color: #555555; }
+        a { color: #3498db; text-decoration: none; }
+        a:hover { text-decoration: underline; }
 
-        body {
-            background-color: #f6f6f6;
-        }
-
-        @media only screen and (max-width: 640px) {
-            body {
-                padding: 0 !important;
-            }
-
-            h1 {
-                font-weight: 800 !important;
-                margin: 20px 0 5px !important;
-            }
-
-            h2 {
-                font-weight: 800 !important;
-                margin: 20px 0 5px !important;
-            }
-
-            h3 {
-                font-weight: 800 !important;
-                margin: 20px 0 5px !important;
-            }
-
-            h4 {
-                font-weight: 800 !important;
-                margin: 20px 0 5px !important;
-            }
-
-            h1 {
-                font-size: 22px !important;
-            }
-
-            h2 {
-                font-size: 18px !important;
-            }
-
-            h3 {
-                font-size: 16px !important;
-            }
-
-            .container {
-                padding: 0 !important;
-                width: 100% !important;
-            }
-
-            .content {
-                padding: 0 !important;
-            }
-
-            .content-wrap {
-                padding: 10px !important;
-            }
-
-            .invoice {
-                width: 100% !important;
-            }
+        @media screen and (max-width: 600px) {
+            .email-container { width: 100% !important; margin-top: 0; border-radius: 0; }
+            .content { padding: 20px !important; }
+            .verification-code { font-size: 28px; }
         }
     </style>
 </head>
+<body>
 
-<body itemscope itemtype="http://schema.org/EmailMessage"
-      style="font-family: 'Helvetica Neue',Helvetica,Arial,sans-serif; box-sizing: border-box; font-size: 14px; -webkit-font-smoothing: antialiased; -webkit-text-size-adjust: none; width: 100% !important; height: 100%; line-height: 1.6em; background-color: #f6f6f6; margin: 0;"
-      bgcolor="#f6f6f6">
+    <table border="0" cellpadding="0" cellspacing="0" width="100%">
+        <tr>
+            <td align="center" style="padding: 20px 0;">
+                
+                <table class="email-container" border="0" cellpadding="0" cellspacing="0" width="100%">
+                    
+                    <tr>
+                        <td class="header">
+                            <h2 style="margin:0; color: #333;">{{$name}}</h2>
+                        </td>
+                    </tr>
 
-<table class="body-wrap"
-       style="font-family: 'Helvetica Neue',Helvetica,Arial,sans-serif; box-sizing: border-box; font-size: 14px; width: 100%; background-color: #f6f6f6; margin: 0;"
-       bgcolor="#f6f6f6">
-    <tr style="font-family: 'Helvetica Neue',Helvetica,Arial,sans-serif; box-sizing: border-box; font-size: 14px; margin: 0;">
-        <td style="font-family: 'Helvetica Neue',Helvetica,Arial,sans-serif; box-sizing: border-box; font-size: 14px; vertical-align: top; margin: 0;"
-            valign="top"></td>
-        <td class="container" width="600"
-            style="font-family: 'Helvetica Neue',Helvetica,Arial,sans-serif; box-sizing: border-box; font-size: 14px; vertical-align: top; display: block !important; max-width: 600px !important; clear: both !important; margin: 0 auto;"
-            valign="top">
-            <div class="content"
-                 style="font-family: 'Helvetica Neue',Helvetica,Arial,sans-serif; box-sizing: border-box; font-size: 14px; max-width: 600px; display: block; margin: 0 auto; padding: 20px;">
-                <table class="main" width="100%" cellpadding="0" cellspacing="0"
-                       style="font-family: 'Helvetica Neue',Helvetica,Arial,sans-serif; box-sizing: border-box; font-size: 14px; border-radius: 3px; background-color: #fff; margin: 0; border: 1px solid #e9e9e9;"
-                       bgcolor="#fff">
-                    <tr style="font-family: 'Helvetica Neue',Helvetica,Arial,sans-serif; box-sizing: border-box; font-size: 14px; margin: 0;">
-                        <td class="content-wrap aligncenter"
-                            style="font-family: 'Helvetica Neue',Helvetica,Arial,sans-serif; box-sizing: border-box; font-size: 14px; vertical-align: top; text-align: center; margin: 0; padding: 20px;"
-                            align="center" valign="top">
-                            <table width="100%" cellpadding="0" cellspacing="0"
-                                   style="font-family: 'Helvetica Neue',Helvetica,Arial,sans-serif; box-sizing: border-box; font-size: 14px; margin: 0;">
-                                <tr style="font-family: 'Helvetica Neue',Helvetica,Arial,sans-serif; box-sizing: border-box; font-size: 14px; margin: 0;">
-                                    <td class="content-block"
-                                        style="font-family: 'Helvetica Neue',Helvetica,Arial,sans-serif; box-sizing: border-box; font-size: 14px; vertical-align: top; margin: 0; padding: 0 0 20px;"
-                                        valign="top">
-                                        <h1 class="aligncenter"
-                                            style="font-family: 'Helvetica Neue',Helvetica,Arial,'Lucida Grande',sans-serif; box-sizing: border-box; font-size: 32px; color: #000; line-height: 1.2em; font-weight: 500; text-align: center; margin: 40px 0 0;"
-                                            align="center">{{$name}}</h1>
-                                    </td>
-                                </tr>
-                                <tr style="font-family: 'Helvetica Neue',Helvetica,Arial,sans-serif; box-sizing: border-box; font-size: 14px; margin: 0;">
-                                    <td class="content-block"
-                                        style="font-family: 'Helvetica Neue',Helvetica,Arial,sans-serif; box-sizing: border-box; font-size: 14px; vertical-align: top; margin: 0; padding: 0 0 20px;"
-                                        valign="top">
-                                        <h2 class="aligncenter"
-                                            style="font-family: 'Helvetica Neue',Helvetica,Arial,'Lucida Grande',sans-serif; box-sizing: border-box; font-size: 24px; color: #000; line-height: 1.2em; font-weight: 400; text-align: center; margin: 40px 0 0;"
-                                            align="center">注册验证码</h2>
-                                    </td>
-                                </tr>
-                                <tr style="font-family: 'Helvetica Neue',Helvetica,Arial,sans-serif; box-sizing: border-box; font-size: 14px; margin: 0;">
-                                    <td class="content-block aligncenter"
-                                        style="font-family: 'Helvetica Neue',Helvetica,Arial,sans-serif; box-sizing: border-box; font-size: 14px; vertical-align: top; text-align: center; margin: 0; padding: 0 0 20px;"
-                                        align="center" valign="top">
-                                        <table class="invoice"
-                                               style="font-family: 'Helvetica Neue',Helvetica,Arial,sans-serif; box-sizing: border-box; font-size: 14px; text-align: left; width: 80%; margin: 40px auto;">
-                                            <tr style="font-family: 'Helvetica Neue',Helvetica,Arial,sans-serif; box-sizing: border-box; font-size: 14px; margin: 0;">
-                                                <td style="font-family: 'Helvetica Neue',Helvetica,Arial,sans-serif; box-sizing: border-box; font-size: 14px; vertical-align: top; margin: 0; padding: 5px 0;"
-                                                    valign="top">尊敬的用户：<br
-                                                            style="font-family: 'Helvetica Neue',Helvetica,Arial,sans-serif; box-sizing: border-box; font-size: 14px; margin: 0;"/>
-                                                </td>
-                                            </tr>
+                    <tr>
+                        <td class="content">
+                            <h1 style="text-align: center;">验证您的邮箱</h1>
+                            <p style="margin-top: 20px;">尊敬的用户：</p>
+                            <p>您正在进行注册或登录验证，请在验证页面输入以下验证码以完成操作：</p>
+                            
+                            <div class="code-box">
+                                <span class="verification-code">{{$code}}</span>
+                            </div>
+                            
+                            <p style="font-size: 14px; color: #888;">* 该验证码在 5 分钟内有效。如果您并未请求此验证码，请忽略此邮件。</p>
+                            
+                            <div style="text-align: center; margin-top: 30px;">
+                                <a href="{{$url}}" style="display: inline-block; background-color: #3498db; color: #ffffff; padding: 12px 25px; border-radius: 4px; font-weight: bold;">前往官网</a>
+                            </div>
+                        </td>
+                    </tr>
 
-                                            <tr style="font-family: 'Helvetica Neue',Helvetica,Arial,sans-serif; box-sizing: border-box; font-size: 14px; margin: 0;">
-                                                <td style="font-family: 'Helvetica Neue',Helvetica,Arial,sans-serif; box-sizing: border-box; font-size: 14px; vertical-align: top; margin: 0; padding: 5px 0;"
-                                                    valign="top">
-                                                    <p>您的邮箱验证代码为: <b>{{$code}}</b>，请在网页中填写，完成验证。5分钟内有效<br>(本邮件由系统自动发出，请勿直接回复)</p><br>
-                                                </td>
-                                            </tr>
-
-                                        </table>
-                                    </td>
-                                </tr>
-                                <tr style="font-family: 'Helvetica Neue',Helvetica,Arial,sans-serif; box-sizing: border-box; font-size: 14px; margin: 0;">
-                                    <td class="content-block aligncenter"
-                                        style="font-family: 'Helvetica Neue',Helvetica,Arial,sans-serif; box-sizing: border-box; font-size: 14px; vertical-align: top; text-align: center; margin: 0; padding: 0 0 20px;"
-                                        align="center" valign="top">
-                                        <a href="{{$url}}"
-                                           style="font-family: 'Helvetica Neue',Helvetica,Arial,sans-serif; box-sizing: border-box; font-size: 14px; color: #348eda; text-decoration: underline; margin: 0;">{{$name}}</a>
-                                    </td>
-                                </tr>
-                                <tr style="font-family: 'Helvetica Neue',Helvetica,Arial,sans-serif; box-sizing: border-box; font-size: 14px; margin: 0;">
-                                    <td class="content-block aligncenter"
-                                        style="font-family: 'Helvetica Neue',Helvetica,Arial,sans-serif; box-sizing: border-box; font-size: 14px; vertical-align: top; text-align: center; margin: 0; padding: 0 0 20px;"
-                                        align="center" valign="top">
-                                    </td>
-                                </tr>
-                            </table>
+                    <tr>
+                        <td class="footer">
+                            <p>此邮件由系统自动发出，请勿直接回复。</p>
+                            <p>&copy; {{ date('Y') }} {{$name}}. 保留所有权利。</p>
                         </td>
                     </tr>
                 </table>
-                <div class="footer"
-                     style="font-family: 'Helvetica Neue',Helvetica,Arial,sans-serif; box-sizing: border-box; font-size: 14px; width: 100%; clear: both; color: #999; margin: 0; padding: 20px;">
-                    <table width="100%"
-                           style="font-family: 'Helvetica Neue',Helvetica,Arial,sans-serif; box-sizing: border-box; font-size: 14px; margin: 0;">
-                        <tr style="font-family: 'Helvetica Neue',Helvetica,Arial,sans-serif; box-sizing: border-box; font-size: 14px; margin: 0;">
-                        </tr>
-                    </table>
-                </div>
-            </div>
-        </td>
-        <td style="font-family: 'Helvetica Neue',Helvetica,Arial,sans-serif; box-sizing: border-box; font-size: 14px; vertical-align: top; margin: 0;"
-            valign="top"></td>
-    </tr>
-</table>
+
+            </td>
+        </tr>
+    </table>
+
 </body>
 </html>
