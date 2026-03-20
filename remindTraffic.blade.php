@@ -76,7 +76,7 @@
                             <p>您的账户流量使用情况如下，请留意：</p>
                             
                             <div class="traffic-alert-box">
-                                您本月的套餐流量已使用 <strong>80%</strong>，请合理安排使用，避免提前耗尽。
+                                您本月的套餐流量已使用 <strong>95%</strong>，请合理安排使用，避免提前耗尽。
                             </div>
                             
                             <p style="text-align: center; color: #999; font-size: 13px;">
@@ -92,7 +92,7 @@
                     <tr>
                         <td class="footer">
                             <p>此邮件由系统自动发出，请勿直接回复。</p>
-                            <p>&copy; {{ date('Y') }} {{$name}}. 保留所有权利。</p>
+                            <p>&copy; {{ date('Y') }} {{$name}}. All Rights Reserved.</p>
                         </td>
                     </tr>
                 </table>

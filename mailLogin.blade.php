@@ -85,7 +85,7 @@
                     <tr>
                         <td class="footer">
                             <p>此邮件由系统自动发出，请勿直接回复。</p>
-                            <p>&copy; {{ date('Y') }} {{$name}}. 保留所有权利。</p>
+                            <p>&copy; {{ date('Y') }} {{$name}}. All Rights Reserved.</p>
                         </td>
                     </tr>
                 </table>
